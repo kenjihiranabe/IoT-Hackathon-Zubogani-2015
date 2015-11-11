@@ -1,0 +1,39 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SensorGateway", "SensorGateway\SensorGateway.csproj", "{12763701-17EC-46BF-A62E-6009BF70B222}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PublishScripts", "PublishScripts", "{07597FF7-6635-4D6A-B7FA-A83E7B7170A4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scripts", "Scripts", "{FADEF302-E072-4114-A1CC-201B5D5DC1A4}"
+	ProjectSection(SolutionItems) = preProject
+		PublishScripts\Scripts\Deploy-AzureResourceGroup.ps1 = PublishScripts\Scripts\Deploy-AzureResourceGroup.ps1
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Templates", "Templates", "{C75A7168-6CC7-4CA5-BC8F-78AF2A7D8C1C}"
+	ProjectSection(SolutionItems) = preProject
+		PublishScripts\Templates\SensorGateway.json = PublishScripts\Templates\SensorGateway.json
+		PublishScripts\Templates\SensorGateway.param.dev.json = PublishScripts\Templates\SensorGateway.param.dev.json
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{12763701-17EC-46BF-A62E-6009BF70B222}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{12763701-17EC-46BF-A62E-6009BF70B222}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{12763701-17EC-46BF-A62E-6009BF70B222}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{12763701-17EC-46BF-A62E-6009BF70B222}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{FADEF302-E072-4114-A1CC-201B5D5DC1A4} = {07597FF7-6635-4D6A-B7FA-A83E7B7170A4}
+		{C75A7168-6CC7-4CA5-BC8F-78AF2A7D8C1C} = {07597FF7-6635-4D6A-B7FA-A83E7B7170A4}
+	EndGlobalSection
+EndGlobal
