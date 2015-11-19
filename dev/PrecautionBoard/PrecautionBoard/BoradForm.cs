@@ -18,6 +18,8 @@ namespace PrecautionBoard
     public partial class BoardForm : Form
     {
         private int count = 0;
+        private static double thresholdTemperatureWarning = 100;
+        private static double thresholdTemperatureDanger = 100;
         private System.Threading.Timer timer;
 
         private delegate void ReceiveTempAndHumidityDelegate(double temperature, double humidity);
@@ -37,13 +39,67 @@ namespace PrecautionBoard
             this.status2F2R.HumidityLabel.Text = "72%";
             this.status2F3R.TemperatureLabel.Text = "21.8℃";
             this.status2F3R.HumidityLabel.Text = "78%";
+            receiveThreshold();
         }
+
+        private void receiveThreshold()
+        {
+            var query = createQueryThreshold();
+            HttpWebRequest req = WebRequest.Create(query) as HttpWebRequest;
+            req.ContentType = "application/json; charset=utf-8";
+            req.Method = "GET";
+
+            HttpWebResponse res = req.GetResponse() as HttpWebResponse;
+            System.Console.WriteLine(res + " / " + res.StatusCode);
+
+            System.IO.Stream st = res.GetResponseStream();
+            StreamReader sr = new StreamReader(st);
+            string responseBody = sr.ReadToEnd();
+            //System.Console.WriteLine(responseBody);
+
+            var jsonArray = DynamicJson.Parse(@responseBody);
+            for (int i = 0; i < 4; i++)
+            {
+                dynamic json = jsonArray[i];
+                if (json.PartitionKey == "TemperatureWarning")
+                {
+                    thresholdTemperatureWarning = json.Threshold;
+                    System.Console.WriteLine("Warning :" + thresholdTemperatureWarning);
+                }
+                if (json.PartitionKey == "TemperatureDanger")
+                {
+                    thresholdTemperatureDanger = json.Threshold;
+                    System.Console.WriteLine("danger :" + thresholdTemperatureDanger);
+                }
+            }
+            req.Abort();
+        }
+
 
         private void btnStart_Click(object sender, EventArgs e)
         {
             TimerCallback timerDelegate = new TimerCallback(receiveSensorLog);
             timer = new System.Threading.Timer(timerDelegate, null, 0, 2000);
+        }
 
+
+        private void checkVirus(double temperature, double humidity)
+        {
+            this.status1F2R.TemperatureLabel.Text = temperature.ToString("F1") + "℃";
+            this.status1F2R.HumidityLabel.Text = (int)humidity + "%";
+
+            if (temperature > thresholdTemperatureDanger)
+            {
+                this.status1F2R.ModifyVirus(VirusType.Danger);
+            }
+            else if (temperature > thresholdTemperatureWarning)
+            {
+                this.status1F2R.ModifyVirus(VirusType.Warning);
+            }
+            else
+            {
+                this.status1F2R.ModifyVirus(VirusType.Normal);
+            }
         }
 
         private void toggleVirus(double temperature, double humidity)
@@ -85,7 +141,8 @@ namespace PrecautionBoard
             try
             {
                 json = jsonArray[0];
-            } catch (Exception ex)
+            }
+            catch (Exception ex)
             {
             }
             if (json != null)
@@ -94,7 +151,7 @@ namespace PrecautionBoard
                 double humidity = json.Humidity;
                 if (res.StatusCode == HttpStatusCode.OK)
                 {
-                    this.Invoke(new ReceiveTempAndHumidityDelegate(toggleVirus), new Object[] { temperature, humidity });
+                    this.Invoke(new ReceiveTempAndHumidityDelegate(checkVirus), new Object[] { temperature, humidity });
                 }
             }
             req.Abort();
@@ -102,10 +159,21 @@ namespace PrecautionBoard
 
         private string createQueryStr()
         {
-               var query = "https://zubo-sensor.azurewebsites.net/api/Sensor"
+            var query = "https://zubo-sensor.azurewebsites.net/api/Sensor"
                 + "?device_id=IKS01A1"
                 + "&len=1";
             return query;
+        }
+
+        private string createQueryThreshold()
+        {
+            var query = "https://zubo-sensor.azurewebsites.net/api/SensorConfig";
+            return query;
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

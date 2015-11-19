@@ -1,0 +1,15 @@
+C:\Users\taguchi-n2310\Documents\git\IoT-Hackerson-Zubogani-2015\dev\PrecautionBoard\PrecautionBoard\bin\Release\PrecautionBoard.exe.config
+C:\Users\taguchi-n2310\Documents\git\IoT-Hackerson-Zubogani-2015\dev\PrecautionBoard\PrecautionBoard\bin\Release\DynamicJson.dll
+C:\Users\taguchi-n2310\Documents\git\IoT-Hackerson-Zubogani-2015\dev\PrecautionBoard\PrecautionBoard\bin\Release\PrecautionBoard.exe.manifest
+C:\Users\taguchi-n2310\Documents\git\IoT-Hackerson-Zubogani-2015\dev\PrecautionBoard\PrecautionBoard\bin\Release\PrecautionBoard.application
+C:\Users\taguchi-n2310\Documents\git\IoT-Hackerson-Zubogani-2015\dev\PrecautionBoard\PrecautionBoard\bin\Release\PrecautionBoard.exe
+C:\Users\taguchi-n2310\Documents\git\IoT-Hackerson-Zubogani-2015\dev\PrecautionBoard\PrecautionBoard\bin\Release\PrecautionBoard.pdb
+C:\Users\taguchi-n2310\Documents\git\IoT-Hackerson-Zubogani-2015\dev\PrecautionBoard\PrecautionBoard\obj\Release\PrecautionBoard.csprojResolveAssemblyReference.cache
+C:\Users\taguchi-n2310\Documents\git\IoT-Hackerson-Zubogani-2015\dev\PrecautionBoard\PrecautionBoard\obj\Release\PrecautionBoard.BoardForm.resources
+C:\Users\taguchi-n2310\Documents\git\IoT-Hackerson-Zubogani-2015\dev\PrecautionBoard\PrecautionBoard\obj\Release\PrecautionBoard.Properties.Resources.resources
+C:\Users\taguchi-n2310\Documents\git\IoT-Hackerson-Zubogani-2015\dev\PrecautionBoard\PrecautionBoard\obj\Release\PrecautionBoard.StatusPanel.resources
+C:\Users\taguchi-n2310\Documents\git\IoT-Hackerson-Zubogani-2015\dev\PrecautionBoard\PrecautionBoard\obj\Release\PrecautionBoard.csproj.GenerateResource.Cache
+C:\Users\taguchi-n2310\Documents\git\IoT-Hackerson-Zubogani-2015\dev\PrecautionBoard\PrecautionBoard\obj\Release\PrecautionBoard.exe.manifest
+C:\Users\taguchi-n2310\Documents\git\IoT-Hackerson-Zubogani-2015\dev\PrecautionBoard\PrecautionBoard\obj\Release\PrecautionBoard.application
+C:\Users\taguchi-n2310\Documents\git\IoT-Hackerson-Zubogani-2015\dev\PrecautionBoard\PrecautionBoard\obj\Release\PrecautionBoard.exe
+C:\Users\taguchi-n2310\Documents\git\IoT-Hackerson-Zubogani-2015\dev\PrecautionBoard\PrecautionBoard\obj\Release\PrecautionBoard.pdb

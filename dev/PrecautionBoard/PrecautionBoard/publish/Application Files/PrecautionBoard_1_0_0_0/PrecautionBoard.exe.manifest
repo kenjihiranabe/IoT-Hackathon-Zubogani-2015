@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<asmv1:assembly xsi:schemaLocation="urn:schemas-microsoft-com:asm.v1 assembly.adaptive.xsd" manifestVersion="1.0" xmlns:asmv1="urn:schemas-microsoft-com:asm.v1" xmlns="urn:schemas-microsoft-com:asm.v2" xmlns:asmv2="urn:schemas-microsoft-com:asm.v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:co.v1="urn:schemas-microsoft-com:clickonce.v1" xmlns:asmv3="urn:schemas-microsoft-com:asm.v3" xmlns:dsig="http://www.w3.org/2000/09/xmldsig#" xmlns:co.v2="urn:schemas-microsoft-com:clickonce.v2">
+  <asmv1:assemblyIdentity name="PrecautionBoard.exe" version="1.0.0.0" publicKeyToken="4ef2d13e2c2a9933" language="neutral" processorArchitecture="msil" type="win32" />
+  <application />
+  <entryPoint>
+    <assemblyIdentity name="PrecautionBoard" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
+    <commandLine file="PrecautionBoard.exe" parameters="" />
+  </entryPoint>
+  <trustInfo>
+    <security>
+      <applicationRequestMinimum>
+        <PermissionSet Unrestricted="true" ID="Custom" SameSite="site" />
+        <defaultAssemblyRequest permissionSetReference="Custom" />
+      </applicationRequestMinimum>
+      <requestedPrivileges xmlns="urn:schemas-microsoft-com:asm.v3">
+        <!--
+          UAC マニフェスト オプション
+          Windows のユーザー アカウント制御のレベルを変更するには、
+          requestedExecutionLevel ノードを以下のいずれかで置換します。
+
+        <requestedExecutionLevel  level="asInvoker" uiAccess="false" />
+        <requestedExecutionLevel  level="requireAdministrator" uiAccess="false" />
+        <requestedExecutionLevel  level="highestAvailable" uiAccess="false" />
+
+         下位互換性を保つためにファイルおよびレジストリの仮想化を使用する場合、
+         requestedExecutionLevel ノードを削除します。
+    -->
+        <requestedExecutionLevel level="asInvoker" uiAccess="false" />
+      </requestedPrivileges>
+    </security>
+  </trustInfo>
+  <dependency>
+    <dependentOS>
+      <osVersionInfo>
+        <os majorVersion="5" minorVersion="1" buildNumber="2600" servicePackMajor="0" />
+      </osVersionInfo>
+    </dependentOS>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="preRequisite" allowDelayedBinding="true">
+      <assemblyIdentity name="Microsoft.Windows.CommonLanguageRuntime" version="4.0.30319.0" />
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="DynamicJson.dll" size="16896">
+      <assemblyIdentity name="DynamicJson" version="1.2.0.0" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>Ib+9KLBzuV83CfchAsyXrw0LCbYaTCTHwEWxqNsHjQc=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="PrecautionBoard.exe" size="107480">
+      <assemblyIdentity name="PrecautionBoard" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>e6vGk3R6n53tv5kNmvIgy0N88+VnwxBqYlE+MtxDyXQ=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <file name="DynamicJson.dll" size="16896">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>Ib+9KLBzuV83CfchAsyXrw0LCbYaTCTHwEWxqNsHjQc=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="PrecautionBoard.exe.config" size="189">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>6N7MliNbVJSIAIPrecIshMbZ7zEoKLr5SQvud4LDUOw=</dsig:DigestValue>
+    </hash>
+  </file>
+<publisherIdentity name="CN=tkdsy\taguchi-n2310" issuerKeyHash="d4c2a1cf9814c1bd636999893e23d883fc064dcb" /><Signature Id="StrongNameSignature" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha256" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" /><DigestValue>jYuTY8SH5mIj6wzxfLe2/2/uWW+gmYgwEJp0zJOUzcE=</DigestValue></Reference></SignedInfo><SignatureValue>dvfWIzF0yWb9NyNFN10QzZMc70GXeH6gKGmOk5ilDBGWusY9QoGRvhq5T4R5te4jsYxaoh6FAgCQppP6SdNhXYQZxPUSv1s5jLvzN+u7WY37GUv2RTHJha1xZB2PxKZ9IsND8Eb5S5PMiVTOEzHnGz9VM1+DQWA9iR0ilLD8f3E=</SignatureValue><KeyInfo Id="StrongNameKeyInfo"><KeyValue><RSAKeyValue><Modulus>rwOMiSUW4M1Xxh6L8PUURCoK8Cm5V/oGn5AOJuDT1FIYAlSV8ok2UjKxqutduvc/HUzsQODHTErq36WWA1EnnUM3BcN8XFImlBO4LeLwNBbceuHS4llcGAWdXiu90Dx99Wlkx1hQ4RMq2tNsFNdqB6b1Tl2YZ+0l0Ow6n9pDafU=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><msrel:RelData xmlns:msrel="http://schemas.microsoft.com/windows/rel/2005/reldata"><r:license xmlns:r="urn:mpeg:mpeg21:2003:01-REL-R-NS" xmlns:as="http://schemas.microsoft.com/windows/pki/2005/Authenticode"><r:grant><as:ManifestInformation Hash="c1cd9493cc749a10308899a06f59ee6fffb6b77cf10ceb2362e687c463938b8d" Description="" Url=""><as:assemblyIdentity name="PrecautionBoard.exe" version="1.0.0.0" publicKeyToken="4ef2d13e2c2a9933" language="neutral" processorArchitecture="msil" type="win32" /></as:ManifestInformation><as:SignedBy /><as:AuthenticodePublisher><as:X509SubjectName>CN=tkdsy\taguchi-n2310</as:X509SubjectName></as:AuthenticodePublisher></r:grant><r:issuer><Signature Id="AuthenticodeSignature" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha256" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" /><DigestValue>5MBijZWmrBVGH2H8XwPfreIM0FI5nBOBwAKJ/i0eqo4=</DigestValue></Reference></SignedInfo><SignatureValue>CaND0H+tnfZvUSKwFmv03F4cMdD/j8a0D5DUdO0uSzqU6UKeZXBaNCzHNiMFD7UGYrZbUCfQKmTpX4HyAyy4GIysLE3WRfHbp70yen1hiRFuWbXFICHxhvrMt2B5NHA6Fw3AeUWL5QAfgvBMJLXE7/Wjb83/AUOME4Npveo+/kc=</SignatureValue><KeyInfo><KeyValue><RSAKeyValue><Modulus>rwOMiSUW4M1Xxh6L8PUURCoK8Cm5V/oGn5AOJuDT1FIYAlSV8ok2UjKxqutduvc/HUzsQODHTErq36WWA1EnnUM3BcN8XFImlBO4LeLwNBbceuHS4llcGAWdXiu90Dx99Wlkx1hQ4RMq2tNsFNdqB6b1Tl2YZ+0l0Ow6n9pDafU=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><X509Data><X509Certificate>MIIB5TCCAU6gAwIBAgIQQ8LH7YNgsKxMc/c02pqH5zANBgkqhkiG9w0BAQsFADAxMS8wLQYDVQQDHiYAdABrAGQAcwB5AFwAdABhAGcAdQBjAGgAaQAtAG4AMgAzADEAMDAeFw0xNTExMTkxNDU4MDlaFw0xNjExMTgyMDU4MDlaMDExLzAtBgNVBAMeJgB0AGsAZABzAHkAXAB0AGEAZwB1AGMAaABpAC0AbgAyADMAMQAwMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCvA4yJJRbgzVfGHovw9RREKgrwKblX+gafkA4m4NPUUhgCVJXyiTZSMrGq61269z8dTOxA4MdMSurfpZYDUSedQzcFw3xcUiaUE7gt4vA0Ftx64dLiWVwYBZ1eK73QPH31aWTHWFDhEyra02wU12oHpvVOXZhn7SXQ7Dqf2kNp9QIDAQABMA0GCSqGSIb3DQEBCwUAA4GBAIeMd90To29i7M1MiAi3T7O34UySeJDo2JUMaDY9ZReZD6v1l82iyln93ktjXPqcN/xWzxXUMY6XO62UDF2c5tNXZy3rTmmO50o1XmtrzyoRnK2RiiHdURz+0adglJhHRasSWmj2pXxt4Y4IIuzngHAoKhFb5oGg2hCiXtncjaCi</X509Certificate></X509Data></KeyInfo></Signature></r:issuer></r:license></msrel:RelData></KeyInfo></Signature></asmv1:assembly>

@@ -1,0 +1,11 @@
+C:\Users\taguchi-n2310\Documents\git\IoT-Hackerson-Zubogani-2015\dev\PrecautionBoard\PrecautionBoard\bin\Debug\PrecautionBoard.exe.config
+C:\Users\taguchi-n2310\Documents\git\IoT-Hackerson-Zubogani-2015\dev\PrecautionBoard\PrecautionBoard\bin\Debug\DynamicJson.dll
+C:\Users\taguchi-n2310\Documents\git\IoT-Hackerson-Zubogani-2015\dev\PrecautionBoard\PrecautionBoard\bin\Debug\PrecautionBoard.exe
+C:\Users\taguchi-n2310\Documents\git\IoT-Hackerson-Zubogani-2015\dev\PrecautionBoard\PrecautionBoard\bin\Debug\PrecautionBoard.pdb
+C:\Users\taguchi-n2310\Documents\git\IoT-Hackerson-Zubogani-2015\dev\PrecautionBoard\PrecautionBoard\obj\Debug\PrecautionBoard.csprojResolveAssemblyReference.cache
+C:\Users\taguchi-n2310\Documents\git\IoT-Hackerson-Zubogani-2015\dev\PrecautionBoard\PrecautionBoard\obj\Debug\PrecautionBoard.BoardForm.resources
+C:\Users\taguchi-n2310\Documents\git\IoT-Hackerson-Zubogani-2015\dev\PrecautionBoard\PrecautionBoard\obj\Debug\PrecautionBoard.Properties.Resources.resources
+C:\Users\taguchi-n2310\Documents\git\IoT-Hackerson-Zubogani-2015\dev\PrecautionBoard\PrecautionBoard\obj\Debug\PrecautionBoard.StatusPanel.resources
+C:\Users\taguchi-n2310\Documents\git\IoT-Hackerson-Zubogani-2015\dev\PrecautionBoard\PrecautionBoard\obj\Debug\PrecautionBoard.csproj.GenerateResource.Cache
+C:\Users\taguchi-n2310\Documents\git\IoT-Hackerson-Zubogani-2015\dev\PrecautionBoard\PrecautionBoard\obj\Debug\PrecautionBoard.exe
+C:\Users\taguchi-n2310\Documents\git\IoT-Hackerson-Zubogani-2015\dev\PrecautionBoard\PrecautionBoard\obj\Debug\PrecautionBoard.pdb
