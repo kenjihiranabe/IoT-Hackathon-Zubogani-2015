@@ -61,6 +61,8 @@ namespace SensorLogUploader
                 SensorMsg sensorMsg = SensorMsg.CreateSensorMessage(msg);
                 this.txtConsole.AppendText(sensorMsg + "\n");
                 uploader.UpdateSensorMessage(sensorMsg);
+                System.Console.WriteLine(sensorMsg.Humidity);
+                //System.Console.WriteLine(sensorMsg.Temperature);
             }
             else
             {
@@ -187,11 +189,14 @@ namespace SensorLogUploader
 
         private void btnConnect_Click(object sender, EventArgs e)
         {
-            string portName = this.comboPorts.SelectedItem.ToString();
-            if (portName == null)
+            uploader.SetupEventHub();
+            this.txtConsole.AppendText("EventHubをセットアップしました．\n");
+            if (this.comboPorts.SelectedItem == null)
             {
                 this.txtConsole.AppendText("ポートが未選択です．\n");
+                return;
             }
+            string portName = this.comboPorts.SelectedItem.ToString();
 
             if (serialPort != null && serialPort.IsOpen)
             {
@@ -213,9 +218,11 @@ namespace SensorLogUploader
                 serialPort.Open();
                 serialPort.DataReceived += SerialPort_DataReceived;
                 this.txtConsole.AppendText(portName + "ポートに接続しました．\n");
+
             } catch (Exception ex)
             {
                 this.txtConsole.AppendText("接続失敗: " + ex.Message + "\n");
+                return;
             }
         }
 
@@ -233,7 +240,7 @@ namespace SensorLogUploader
                 }
                 if (len > 0)
                 {
-                    System.Console.WriteLine(len);
+                    //System.Console.WriteLine(len);
                     Invoke(new ReceiveDataDelegate(ReceiveData), new Object[] { len });
                 }
             }
@@ -270,6 +277,11 @@ namespace SensorLogUploader
             {
                 this.txtConsole.AppendText("ポートは未接続です．\n");
             }
+        }
+
+        private void btnSendEmpty_Click(object sender, EventArgs e)
+        {
+            uploader.sendDummmyToEventHub();
         }
     }
 }

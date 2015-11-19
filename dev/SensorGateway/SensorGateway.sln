@@ -18,6 +18,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Templates", "Templates", "{
 		PublishScripts\Templates\SensorGateway.param.dev.json = PublishScripts\Templates\SensorGateway.param.dev.json
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SensorWebJob", "SensorWebJob\SensorWebJob.csproj", "{51933B57-71CD-4528-8CDD-0EA7A02077BE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -28,6 +30,10 @@ Global
 		{12763701-17EC-46BF-A62E-6009BF70B222}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{12763701-17EC-46BF-A62E-6009BF70B222}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{12763701-17EC-46BF-A62E-6009BF70B222}.Release|Any CPU.Build.0 = Release|Any CPU
+		{51933B57-71CD-4528-8CDD-0EA7A02077BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{51933B57-71CD-4528-8CDD-0EA7A02077BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{51933B57-71CD-4528-8CDD-0EA7A02077BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{51933B57-71CD-4528-8CDD-0EA7A02077BE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -16,14 +16,116 @@ namespace SensorGateway.Controllers
         private const string APP_URL_MOBILE_SERVICES = "https://zubo-sensor.azure-mobile.net/";
         private const string APP_KEY_MOBILE_SERVICES = "KKHtgfGVyeqINKrecqdwlJBZdOGtkt88";
 
+        /*
+        public IEnumerable<SensorLog> Get(string device_id)
+        {
+            var queryPairs = this.Request.GetQueryNameValuePairs();
+            string dateLong = queryPairs.FirstOrDefault(q => q.Key == "date").Value;
 
+            string storeCS = CloudConfigurationManager.GetSetting("StorageConnectionString");
+            CloudStorageAccount storageAccound = CloudStorageAccount.Parse(storeCS);
+            CloudTableClient tableClient = storageAccound.CreateCloudTableClient();
+            CloudTable sensorLogTable = tableClient.GetTableReference("SensorLog");
+
+            TableQuery<SensorLog> query = null;
+            if (dateLong == null)
+            {
+                query = new TableQuery<SensorLog>().Where(
+                    TableQuery.GenerateFilterCondition("PartitionKey", QueryComparisons.Equal, device_id));
+            } else
+            {
+                long dateBinary = long.Parse(dateLong);
+                DateTime data = DateTime.FromBinary(dateBinary);
+                query = new TableQuery<SensorLog>().Where(
+                    TableQuery.CombineFilters(
+                    TableQuery.GenerateFilterCondition("PartitionKey", QueryComparisons.Equal, device_id),
+                    TableOperators.And,
+                    TableQuery.GenerateFilterConditionForDate("UploadTime", QueryComparisons.GreaterThan, data)));
+            }
+            var results = sensorLogTable.ExecuteQuery(query);
+            var sorted = from t in results orderby t.UploadTime select t;
+            return sorted.Select(ent => (SensorLog)ent).ToList();
+        }*/
+
+        public IEnumerable<SensorLog> Get(string device_id, int len)
+        {
+            var queryPairs = this.Request.GetQueryNameValuePairs();
+            string dateLong = queryPairs.FirstOrDefault(q => q.Key == "date").Value;
+
+            string storeCS = CloudConfigurationManager.GetSetting("StorageConnectionString");
+            CloudStorageAccount storageAccound = CloudStorageAccount.Parse(storeCS);
+            CloudTableClient tableClient = storageAccound.CreateCloudTableClient();
+            tableClient.DefaultRequestOptions = new TableRequestOptions()
+            {
+                PayloadFormat = TablePayloadFormat.JsonNoMetadata
+            };
+            CloudTable sensorLogTable = tableClient.GetTableReference("SensorLog");
+
+            TableQuery<SensorLog> query = null;
+            if (dateLong == null)
+            {
+                query = new TableQuery<SensorLog>().Where(
+                    TableQuery.GenerateFilterCondition("PartitionKey", QueryComparisons.Equal, device_id));
+            }
+            else
+            {
+                long dateBinary = long.Parse(dateLong);
+                DateTime data = DateTime.FromBinary(dateBinary);
+                query = new TableQuery<SensorLog>().Where(
+                    TableQuery.CombineFilters(
+                    TableQuery.GenerateFilterCondition("PartitionKey", QueryComparisons.Equal, device_id),
+                    TableOperators.And,
+                    TableQuery.GenerateFilterConditionForDate("UploadTime", QueryComparisons.GreaterThan, data)));
+            }
+            var results = sensorLogTable.ExecuteQuery(query);
+            var sorted = from t in results orderby t.UploadTime select t;
+            var list = sorted.Select(ent => (SensorLog)ent).ToList();
+            return list.GetRange(list.Count - len, len);
+        }
+
+        /*
+        public IEnumerable<SensorLog> Get(int accX, int accY, int accZ)
+        {
+            string storeCS = CloudConfigurationManager.GetSetting("StorageConnectionString");
+            CloudStorageAccount storageAccound = CloudStorageAccount.Parse(storeCS);
+            CloudTableClient tableClient = storageAccound.CreateCloudTableClient();
+            CloudTable sensorLogTable = tableClient.GetTableReference("SensorLog");
+
+            var query = new TableQuery<SensorLog>().Where(
+                TableQuery.GenerateFilterConditionForInt("AccelerationX", QueryComparisons.Equal, accX)).Where(
+                TableQuery.GenerateFilterConditionForInt("AccelerationY", QueryComparisons.Equal, accY)).Where(
+                TableQuery.GenerateFilterConditionForInt("AccelerationZ", QueryComparisons.Equal, accZ));
+            var results = sensorLogTable.ExecuteQuery(query).
+                Select((ent => (SensorLog)ent)).ToList();
+            return results;
+        }*/
+
+        public string Get(int accX, int accY, int accZ)
+        {
+            string storeCS = CloudConfigurationManager.GetSetting("StorageConnectionString");
+            CloudStorageAccount storageAccound = CloudStorageAccount.Parse(storeCS);
+            CloudTableClient tableClient = storageAccound.CreateCloudTableClient();
+            CloudTable sensorLogTable = tableClient.GetTableReference("SensorLog");
+
+            var query = new TableQuery<SensorLog>().Where(
+                TableQuery.GenerateFilterConditionForInt("AccelerationX", QueryComparisons.Equal, accX)).Where(
+                TableQuery.GenerateFilterConditionForInt("AccelerationY", QueryComparisons.Equal, accY)).Where(
+                TableQuery.GenerateFilterConditionForInt("AccelerationZ", QueryComparisons.Equal, accZ));
+            var results = sensorLogTable.ExecuteQuery(query).
+                Select((ent => (SensorLog)ent)).ToList();
+            return results[0].UploadTime.ToString() + " # " + results[0].UploadTime.ToBinary() + " # "
+                + results[0].UploadTime.ToLongTimeString();
+        }
+
+        /* SQLデータベース受信用
         public string Get()
         {
             var uriStr = APP_URL_MOBILE_SERVICES + "/tables/SensorLog";
             var response = getToMobileServices(uriStr);
             return "success; " + response.Content.ToString();
-        }
+        }*/
 
+        /* SQLデータベース送信用
         public string Get(string device_id)
         {
             try
@@ -58,7 +160,7 @@ namespace SensorGateway.Controllers
             {
                 return "error; " + ex.ToString();
             }
-        }
+        }*/
 
         private string sendDataToMobileService(SensorLog sensorLog)
         {
@@ -129,6 +231,10 @@ namespace SensorGateway.Controllers
         public int GyroX { get; set; }              // ジャイロX
         public int GyroY { get; set; }              // ジャイロY
         public int GyroZ { get; set; }              // ジャイロZ
+
+        public SensorLog()
+        {
+        }
 
         public SensorLog(string deviceId)
         {

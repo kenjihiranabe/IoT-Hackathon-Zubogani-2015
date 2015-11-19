@@ -35,6 +35,7 @@
             this.btnDisconnect = new System.Windows.Forms.Button();
             this.btnSendByte = new System.Windows.Forms.Button();
             this.txtSendPeriod = new System.Windows.Forms.TextBox();
+            this.btnSendEmpty = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnSearch
@@ -104,11 +105,22 @@
             this.txtSendPeriod.TabIndex = 6;
             this.txtSendPeriod.Text = "2000";
             // 
+            // btnSendEmpty
+            // 
+            this.btnSendEmpty.Location = new System.Drawing.Point(47, 101);
+            this.btnSendEmpty.Name = "btnSendEmpty";
+            this.btnSendEmpty.Size = new System.Drawing.Size(143, 23);
+            this.btnSendEmpty.TabIndex = 7;
+            this.btnSendEmpty.Text = "Send empty EventData";
+            this.btnSendEmpty.UseVisualStyleBackColor = true;
+            this.btnSendEmpty.Click += new System.EventHandler(this.btnSendEmpty_Click);
+            // 
             // MainDialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(681, 449);
+            this.Controls.Add(this.btnSendEmpty);
             this.Controls.Add(this.txtSendPeriod);
             this.Controls.Add(this.btnSendByte);
             this.Controls.Add(this.btnDisconnect);
@@ -133,6 +145,7 @@
         private System.Windows.Forms.Button btnDisconnect;
         private System.Windows.Forms.Button btnSendByte;
         private System.Windows.Forms.TextBox txtSendPeriod;
+        private System.Windows.Forms.Button btnSendEmpty;
     }
 }
 
