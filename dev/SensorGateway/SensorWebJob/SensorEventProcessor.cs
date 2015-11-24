@@ -6,7 +6,7 @@ using Microsoft.WindowsAzure.Storage.Table;
 using SensorWebJob.Models;
 using System;
 using System.Collections.Generic;
-using System.Linq;
+//using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
@@ -18,6 +18,10 @@ namespace SensorWebJob
     {
         private const string APP_URL_MOBILE_SERVICES = "https://zubo-sensor.azure-mobile.net/";
         private const string APP_KEY_MOBILE_SERVICES = "KKHtgfGVyeqINKrecqdwlJBZdOGtkt88";
+
+        public static DateTime? StartedTime = null;
+        private static double? thresholdTempWarning = null;
+        private static double? thresholdTempDanger = null;
 
         //private HttpClient client;
         private CloudTable sensorLogTable;
@@ -38,6 +42,28 @@ namespace SensorWebJob
             var tableClient = storageAccount.CreateCloudTableClient();
             sensorLogTable = tableClient.GetTableReference("SensorLog");
             //sensorLogTable = tableClient.GetTableReference("SensorLog" + context.Lease.PartitionId);
+
+            // 閾値の取得
+            if (thresholdTempWarning == null)
+            {
+                var sensorConfigTable = tableClient.GetTableReference("SensorConfig");
+                var query = new TableQuery<SensorConfig>();
+                var configData = sensorConfigTable.ExecuteQuery(query);
+                foreach (SensorConfig config in configData)
+                {
+                    if (config.PartitionKey == "TemperatureWarning")
+                    {
+                        thresholdTempWarning = config.Threshold;
+                        System.Console.WriteLine("ThresholdTempWarning: " + thresholdTempWarning);
+                    }
+                    else if (config.PartitionKey == "TemperatureDanger")
+                    {
+                        thresholdTempDanger = config.Threshold;
+                        System.Console.WriteLine("ThresholdTempDanger: " + thresholdTempDanger);
+                    }
+                }
+            }
+
             return sensorLogTable.CreateIfNotExistsAsync();
         }
 
@@ -47,7 +73,7 @@ namespace SensorWebJob
             {
                 if (msg.EnqueuedTimeUtc < DateTime.Today)
                 {
-                    //continue;
+                    continue;
                 }
                 SensorLog sensorLog = new SensorLog(context.EventHubPath, msg.Offset, msg.EnqueuedTimeUtc, context.Lease.PartitionId);
                 
@@ -97,7 +123,7 @@ namespace SensorWebJob
                             break;
                     }
                 }
-                sensorLogTable.ExecuteAsync(TableOperation.Insert(sensorLog));
+                var result = sensorLogTable.ExecuteAsync(TableOperation.Insert(sensorLog));
                 checkTodoSendData(sensorLog);
 
                 /*string uriStr = createUriToMobileService(sensorLog);
@@ -107,10 +133,10 @@ namespace SensorWebJob
             return Task.FromResult<object>(null);
         }
 
-        private async void notifyTest()
+        private async void notifyToFamily()
         {
             NotificationOutcome outcome = null;
-            var notif = "{\"data\":{\"message\":\"notify test\", \"floor\":\"7\", \"room\":\"小会議室\"}}";
+            var notif = "{\"data\":{\"message\":\"notify test\", \"floor\":\"1\", \"room\":\"Room2\"}}";
             outcome = await Notifications.Instance.Hub.SendGcmNativeNotificationAsync(notif);
             if (outcome != null)
             {
@@ -128,17 +154,30 @@ namespace SensorWebJob
                 System.Console.WriteLine("Outcome Null");
             }
         }
+        
+        private bool overDanger = false;
 
         private void checkTodoSendData(SensorLog sensorLog)
         {
-            if (sensorLog.MagnetoX == 167
-                && sensorLog.MagnetoY == -709
-                && sensorLog.MagnetoZ == 380
-                && sensorLog.AccelerationX == 1311
-                && sensorLog.AccelerationY == -119
-                && sensorLog.AccelerationZ == -433)
+            if (sensorLog.UploadTime < SensorEventProcessor.StartedTime)
             {
-                notifyTest();
+                return;
+            }
+
+            if (overDanger)
+            {
+                if (sensorLog.Temperature < thresholdTempDanger && sensorLog.Temperature > 10)
+                {
+                    overDanger = false;
+                }
+            }
+            else
+            {
+                if (sensorLog.Temperature > thresholdTempDanger)
+                {
+                    overDanger = true;
+                    notifyToFamily();
+                }
             }
         }
         
@@ -196,5 +235,10 @@ namespace SensorWebJob
             RowKey = eventHubName + "_" + partitionId + "_" + offset;
             UploadTime = enqueueTime;
         }
+    }
+
+    public class SensorConfig : TableEntity
+    {
+        public double Threshold { get; set; }   // 閾値
     }
 }

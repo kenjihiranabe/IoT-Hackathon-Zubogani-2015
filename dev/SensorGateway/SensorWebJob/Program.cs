@@ -46,6 +46,8 @@ namespace SensorWebJob
 
         async Task SetupStoring()
         {
+            SensorEventProcessor.StartedTime = DateTime.UtcNow;
+
             var storeCS = CloudConfigurationManager.GetSetting("StorageConnectionString");
             var storageAccount = CloudStorageAccount.Parse(storeCS);
 
